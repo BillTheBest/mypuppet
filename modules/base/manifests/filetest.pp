@@ -1,6 +1,8 @@
 class base::filetest {
   $ftroot="/tmp/filetest"
 
+  #File { audit => [ensure, type] }
+
   file { "${ftroot}":
     ensure => directory,
   }
@@ -23,5 +25,10 @@ class base::filetest {
   file { "${ftroot}/symlink":
     ensure => symlink,
     target => "${ftroot}/symlink_source",
+  }
+
+  file { "${ftroot}/recurse":
+    source  => "puppet:///modules/base/filetest/recurse",
+    recurse => true,
   }
 }
