@@ -1,12 +1,16 @@
 # Set FACTER_auditfiles to "true"
 # to turn on auditing of files.
-
+# set it to "all" to audit every attribute
 
 class base::filetest {
   $ftroot="/tmp/filetest"
 
   if $auditfiles == "true" {
     File { audit => [ensure, type] }
+  }
+
+  if $auditfiles == "all" {
+    File { audit => all, }
   }
 
   file { "${ftroot}":
