@@ -12,7 +12,7 @@ class base::filetest {
 
   file { "${ftroot}/source":
     ensure => file,
-    source => puppet:///modules/base/filetest/source,
+    source => "puppet:///modules/base/filetest/source",
   }
 
   file { "${ftroot}/symlink_source":
