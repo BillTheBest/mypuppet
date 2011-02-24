@@ -1,7 +1,13 @@
+# Set FACTER_auditfiles to "true"
+# to turn on auditing of files.
+
+
 class base::filetest {
   $ftroot="/tmp/filetest"
 
-  #File { audit => [ensure, type] }
+  if $auditfiles == "true" {
+    File { audit => [ensure, type] }
+  }
 
   file { "${ftroot}":
     ensure => directory,
